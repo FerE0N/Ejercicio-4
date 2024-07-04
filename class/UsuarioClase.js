@@ -1,6 +1,6 @@
 class Usuario{
     constructor (usuario){
-        this.id=usuario.id;
+        this.id=usuario.idusuario;
         this.nombre=usuario.nombre;
         this.celular=usuario.celular;
         this.correo=usuario.correo;
