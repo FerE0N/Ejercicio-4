@@ -30,7 +30,7 @@ ruta.get("/",async (req, res)=>{
     try {
         const usuariobd=new UsuarioBD();
         const [usuariosBD]=await usuariobd.mostrarUsuarios();
-        console.log(usuariosBD);
+        //console.log(usuariosBD);
         res.render("mostrarUsuarios",{usuariosBD});
     } catch (error) {
         console.log("Error al recuperar los usuarios "+ error);
@@ -39,7 +39,7 @@ ruta.get("/",async (req, res)=>{
 
 ruta.post("/agregarUsuario",(req,res)=>{
     var usuario1=new Usuario(req.body);
-    console.log(usuario1.obtenerDatos);
+    //console.log(usuario1.obtenerDatos);
     if(usuario1.obtenerDatos.nombre == undefined || usuario1.obtenerDatos.celular == undefined || usuario1.obtenerDatos.correo == undefined){
         res.render("error");
     }else{
@@ -62,8 +62,8 @@ ruta.get("/editarUsuario/:id",async(req,res)=>{
 
 ruta.post("/editarUsuario",async(req,res)=>{
     const usuario1 = new Usuario(req.body);
-    console.log(usuario1);
-    if(usuario1.obtenerDatos.nombre == undefined && usuario1.obtenerDatos.celular == undefined && usuario1.obtenerDatos.correo == undefined){
+    //console.log(usuario1);
+    if(usuario1.obtenerDatos.nombre == undefined || usuario1.obtenerDatos.celular == undefined || usuario1.obtenerDatos.correo == undefined){
         res.render(error);
     }else{
         const usuariobd=new UsuarioBD();
@@ -75,6 +75,7 @@ ruta.post("/editarUsuario",async(req,res)=>{
 ruta.get("/borrarUsuario/:id", async (req,res)=>{
     const usuariobd=new UsuarioBD();
     usuariobd.borrarUsuario(req.params.id);
+    res.redirect("/");
 });
 
 module.exports=ruta;
